@@ -13,8 +13,12 @@ class App extends Component {
         ' ',' ',' ',
         ' ,',' ',' ',
         ' ',' ',' '
-      ]
+      ],
+      turn:'x'
     }
+  }
+  updateBoard(loc,player){
+
   }
   render() {
     return (
@@ -24,9 +28,13 @@ class App extends Component {
           <Announcement/>
           <ResetButton/>
         </div>
-         {this.stat.gameBoard.map(function(value, i){
-           <Tile/>
-         })}
+         {this.state.gameBoard.map(function(value, i){
+           <Tile key={i}
+             loc={i}
+             value={value}
+             updateBoard={this.updateBoard.bind(this)}
+             turn={this.state.turn}/>
+         }.bind(this))}
       </div>
     );
   }
