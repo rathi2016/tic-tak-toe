@@ -49,3 +49,25 @@ export default class Game extends React.Component {
         </li>
       );
     });
+    let status;
+        if (winner) {
+          status = `Winner: ${winner}`;
+        } else {
+          status = `Next player: ${(this.state.xIsNext ? 'X' : 'O')}`;
+        }
+        return (
+          <div className="game">
+            <div className="game-board">
+              <Board
+                squares={current.squares}
+                handleClick={this.handleClick}
+              />
+            </div>
+            <div className="game-info">
+              <div className="status">{status}</div>
+              <ol>{moves}</ol>
+            </div>
+          </div>
+        );
+      }
+    }
