@@ -31,3 +31,21 @@ export default class Game extends React.Component {
         stepNumber: history.length,
       });
     }
+    jumpTo(step) {
+    this.setState({
+      stepNumber: step,
+      xIsNext: (step % 2) ? false : true,
+    });
+  }
+  render() {
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
+    const winner = calculateWinner(current.squares);
+    const moves = history.map((step, move) => {
+      const desc = move ? `Move # ${move}` : 'Game start';
+      return (
+        <li key={move}>
+          <a href="##" onClick={() => this.jumpTo(move)}>{desc}</a>
+        </li>
+      );
+    });
